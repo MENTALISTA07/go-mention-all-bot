@@ -67,9 +67,9 @@ func logger(next tele.HandlerFunc) tele.HandlerFunc {
 }
 
 func handleStart(c tele.Context) error {
-	return c.Send("Hey! I can help notify everyone 📢 in the group when someone needs them. " +
-		"Everyone who wishes to receive mentions needs to /in to opt-in. " +
-		"All opted-in users can then be mentioned using /all")
+	return c.Send("Ei! Posso ajudar a notificar todos 📢 do grupo quando alguém precisar deles. " +
+"Todo mundo que deseja receber menções precisa /in para optar por participar." +
+"Todos os usuários que optaram por participar podem ser mencionados usando /all")
 }
 
 func handleIn(c tele.Context) error {
@@ -78,7 +78,7 @@ func handleIn(c tele.Context) error {
 		Columns:   []clause.Column{{Name: "chat_id"}, {Name: "user_id"}},
 		DoUpdates: clause.AssignmentColumns([]string{"username"}),
 	}).Create(&ChatUser{ChatID: c.Message().Chat.ID, UserID: c.Sender().ID, Username: username})
-	return c.Send("Thanks for opting in " + username)
+	return c.Send("Obrigado por ativar " + username)
 }
 
 func extractUsername(m *tele.User) string {
@@ -93,7 +93,7 @@ func extractUsername(m *tele.User) string {
 
 func handleOut(c tele.Context) error {
 	DB.Where("chat_id = ? and user_id = ?", c.Chat().ID, c.Sender().ID).Delete(&ChatUser{})
-	msg := fmt.Sprintf("You've been opted out %v", extractUsername(c.Sender()))
+	msg := fmt.Sprintf("Você foi excluído %v", extractUsername(c.Sender()))
 	return c.Send(msg)
 }
 
@@ -102,7 +102,7 @@ func handleAll(c tele.Context) error {
 	DB.Find(&users, ChatUser{ChatID: c.Chat().ID})
 
 	if len(users) == 0 {
-		return c.Send("There are no users. To opt in type /in command")
+		return c.Send("Não há usuários. Para optar por digitar /in comando")
 	}
 
 	var mentions []string
