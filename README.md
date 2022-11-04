@@ -1,6 +1,6 @@
 # 🦄 go-mention-bot
 
-Second version of [mention-all-the-bot](https://github.com/pischule/mention-all-bot)
+Second version of [mention-all-the-bot](https://github.com/MENTALISTA07/mention-all-bot)
 
 ## how to run this
 
