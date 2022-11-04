@@ -5,7 +5,7 @@ Second version of [mention-all-the-bot](https://github.com/MENTALISTA07/mention-
 ## how to run this
 
 ```bash
-$ wget https://raw.githubusercontent.com/pischule/go-mention-all-bot/master/docker-compose.yml
+$ wget https://raw.githubusercontent.com/MENTALISTA07/go-mention-all-bot/master/docker-compose.yml
 $ echo "TELEGRAM_TOKEN=<your-telegram-token>" >> .env
 $ docker-compose up
 ```
